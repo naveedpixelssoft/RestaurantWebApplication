@@ -4,58 +4,224 @@
         <!-- Menu -->
 
         @can('admin-panel')
-        <div class="menu">
-            <ul class="list pt-4">
-                <li>
-                    <a href="{{url('admin/dashboard')}}" >
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-{{--                <li>--}}
-{{--                    <a  onClick="return false;" class="menu-toggle" href="" >--}}
-{{--                        <i class="fas fa-unlock-alt"></i>--}}
-{{--                        <span> Roles | Permission</span>--}}
-{{--                    </a>--}}
-{{--                    <ul class="ml-menu">--}}
-{{--                        <li>--}}
-{{--                            <a href=" {{route('roles.index')}}">--}}
-{{--                                <span>Roles</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li>--}}
-{{--                            <a href=" {{route('permissions.index')}}">--}}
-{{--                                <span>Permissions</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-                <li>
-                    <a href="{{url('admin/user-info')}}" >
-                        <i class="fas fa-user"></i>
-                        <span>Users</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{url('admin/category')}}" >
-                        <i class="fas fa-user"></i>
-                        <span>Manage Category</span>
-                    </a>
-                </li>
-                <li>
-                    <form class="m-0" method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <a href="#"  :href="route('logout')"
-                           onclick="event.preventDefault();
+            <div class="menu">
+                <ul class="list pt-4">
+                    <li>
+                        <a href="{{url('admin/dashboard')}}" >
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a  onClick="return false;" class="menu-toggle" href="" >
+                            <i class="fa-solid fa-delicious"></i>
+                            <span>Restaurants</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href=" {{route('roles.index')}}">
+                                    <span>All Restaurants</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" {{route('permissions.index')}}">
+                                    <span>Active Restaurants</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" {{route('permissions.index')}}">
+                                    <span>Banned Restaurants</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a  onClick="return false;" class="menu-toggle" href="" >
+                            <i class="fas fa-cart-arrow-down"></i>
+                            <span>Orders</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href=" {{route('roles.index')}}">
+                                    <span>Pending Orders</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" {{route('permissions.index')}}">
+                                    <span>Delivered Orders</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" {{route('permissions.index')}}">
+                                    <span>Cancelled Orders</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    {{--                <li>--}}
+                    {{--                    <a  onClick="return false;" class="menu-toggle" href="" >--}}
+                    {{--                        <i class="fas fa-unlock-alt"></i>--}}
+                    {{--                        <span> Roles | Permission</span>--}}
+                    {{--                    </a>--}}
+                    {{--                    <ul class="ml-menu">--}}
+                    {{--                        <li>--}}
+                    {{--                            <a href=" {{route('roles.index')}}">--}}
+                    {{--                                <span>Roles</span>--}}
+                    {{--                            </a>--}}
+                    {{--                        </li>--}}
+                    {{--                        <li>--}}
+                    {{--                            <a href=" {{route('permissions.index')}}">--}}
+                    {{--                                <span>Permissions</span>--}}
+                    {{--                            </a>--}}
+                    {{--                        </li>--}}
+                    {{--                    </ul>--}}
+                    {{--                </li>--}}
+                    <li>
+                        <a href="{{url('admin/user-info')}}" >
+                            <i class="fas fa-user"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a  onClick="return false;" class="menu-toggle" >
+                            <i class="fas fa-unlock-alt"></i>
+                            <span> Manage Categories</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{{url('admin/category')}}">
+                                    <span>Menu Category</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('admin/restaurant-category')}}">
+                                    <span>Restaurant Category</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <form class="m-0" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="#"  :href="route('logout')"
+                               onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                            <i class="fas fa-power-off"></i> <span>
+                                <i class="fas fa-power-off"></i> <span>
                                 {{ __('Log Out') }}
                             </span>
+                            </a>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        @endcan
+        @can('restaurant-panel')
+            <div class="menu">
+                <ul class="list pt-4">
+                    <li>
+                        <a href="{{url('admin/dashboard')}}" >
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
                         </a>
-                    </form>
-                </li>
-            </ul>
-        </div>
+                    </li>
+
+                    <li>
+                        <a  onClick="return false;" class="menu-toggle" href="" >
+                            <i class="fa-solid fa-delicious"></i>
+                            <span>Restaurants</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href=" {{route('roles.index')}}">
+                                    <span>All Restaurants</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" {{route('permissions.index')}}">
+                                    <span>Active Restaurants</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" {{route('permissions.index')}}">
+                                    <span>Banned Restaurants</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a  onClick="return false;" class="menu-toggle" href="" >
+                            <i class="fas fa-cart-arrow-down"></i>
+                            <span>Orders</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href=" {{route('roles.index')}}">
+                                    <span>Pending Orders</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" {{route('permissions.index')}}">
+                                    <span>Delivered Orders</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" {{route('permissions.index')}}">
+                                    <span>Cancelled Orders</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    {{--                <li>--}}
+                    {{--                    <a  onClick="return false;" class="menu-toggle" href="" >--}}
+                    {{--                        <i class="fas fa-unlock-alt"></i>--}}
+                    {{--                        <span> Roles | Permission</span>--}}
+                    {{--                    </a>--}}
+                    {{--                    <ul class="ml-menu">--}}
+                    {{--                        <li>--}}
+                    {{--                            <a href=" {{route('roles.index')}}">--}}
+                    {{--                                <span>Roles</span>--}}
+                    {{--                            </a>--}}
+                    {{--                        </li>--}}
+                    {{--                        <li>--}}
+                    {{--                            <a href=" {{route('permissions.index')}}">--}}
+                    {{--                                <span>Permissions</span>--}}
+                    {{--                            </a>--}}
+                    {{--                        </li>--}}
+                    {{--                    </ul>--}}
+                    {{--                </li>--}}
+                    <li>
+                        <a href="{{url('admin/user-info')}}" >
+                            <i class="fas fa-user"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{{url('admin/category')}}" >
+                            <i class="fas fa-user"></i>
+                            <span>Manage Categor</span>
+                        </a>
+                    </li>
+                    <li>
+                        <form class="m-0" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="#"  :href="route('logout')"
+                               onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                <i class="fas fa-power-off"></i> <span>
+                                {{ __('Log Out') }}
+                            </span>
+                            </a>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         @endcan
         <!-- #Menu -->
         <div class="copyright">

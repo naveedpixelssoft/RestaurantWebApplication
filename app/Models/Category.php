@@ -16,4 +16,11 @@ class Category extends Model
         'image',
         'status',
     ];
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class, 'category_id');
+    }
+
+
 }

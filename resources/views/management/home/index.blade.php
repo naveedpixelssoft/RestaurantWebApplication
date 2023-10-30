@@ -56,59 +56,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if(auth()->user()->hasPermissionTo('contacts-list'))
-                            <?php
-                            $count=1
-                            ?>
-                            @if(count($order)  != 0)
-                            @foreach($order as $row)
-                            <tr>
-                                <th scope="row">
-
-                                    <a class="text-signature" href="{{route('orders.show',$row->order_id)}}">
-                                    #{{$row->order_number}}
-                                    </a>
-                                </th>
-
-                                <td>{{$row->total_price}} {{$row->currency}}</td>
-                                <td>
-                                    {{date("d-M-Y", strtotime($row->order_date))}} <br>
-                                    {{date("h:i A", strtotime($row->order_date))}}                                </td>
-
-                                <td>
-                                    @if($row->shipment_id != null)
-                                        <label class="badge badge-success" > {{$row['shipment_id']}}</label>
-                                    @else
-                                        <label class="badge badge-warning text-white border-0 bg-signature" >Pending</label>
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
-                            <tr>
-                                <td class="text-center" colspan=4>
-                                    <a href="{{url('admin/orders')}}" class="btn bg-signature text-white justify-content-center d-flex align-items-center text-center" href="">View All</a>
-
-                                </td>
-                            </tr>
-                            @else
-
-                                <tr>
-                                    <td colspan="3">
-                                        No Record Found
-
-                                    </td>
-                                </tr>
-                            @endif
-                            <?php
-                            $count=1
-                            ?>
-                            @else
-                                <tr>
-                                    <td class="text-center" colspan="5">
-                                UNAUTHORIZED
-                                    </td>
-                                </tr>
-                            @endif
 
                             </tbody>
                         </table>

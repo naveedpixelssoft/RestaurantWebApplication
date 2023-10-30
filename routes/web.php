@@ -22,77 +22,47 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('Frontend.home.index');
 });
+Route::get('/restaurant-listings', function () {
+    return view('frontend.templates.restaurants');
+});
 
 
 
 
 
 
+
+//Route::resource('/',App\Http\Controllers\HomeController::class);
 
 Route::get('/adminpanel', function () {
     return redirect('admin/dashboard');
 });
-//Route::resource('/',App\Http\Controllers\HomeController::class);
+
+Route::get('/restaurant-panel', function () {
+    return redirect('restaurant/dashboard');
+});
+Route::middleware(['auth'])
+    ->group(function () {
+        Route::resource('admin/roles', \App\Http\Controllers\RoleController::class);
+        Route::resource('admin/permissions', \App\Http\Controllers\PermissionsController::class);
+        Route::resource('admin/users', \App\Http\Controllers\UserController::class);
+        Route::resource('admin/dashboard',App\Http\Controllers\HomeController::class);
+        //Categories Routes
+        Route::resource('admin/category',\App\Http\Controllers\Management\CategoryController::class);
+        Route::resource('admin/restaurant-category',\App\Http\Controllers\Management\RestaurantCategoryController::class);
+        //blog
+        Route::resource('admin/post',BlogController::class);
+    });
+
 
 
 Route::middleware(['auth'])
     ->group(function () {
-
-//Route::group(['middleware' => ['auth']], function() {
-//        Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-        Route::resource('admin/roles', \App\Http\Controllers\RoleController::class);
-        Route::resource('admin/permissions', \App\Http\Controllers\PermissionsController::class);
-        Route::resource('admin/users', \App\Http\Controllers\UserController::class);
-        Route::resource('admin/products', App\Http\Controllers\ProductController::class);
-        Route::resource('admin/dashboard',App\Http\Controllers\HomeController::class);
-        Route::resource('admin/countries',CountryController::class);
-
-
-//    Categories Routes
-
-
-        Route::resource('admin/category',\App\Http\Controllers\Management\CategoryController::class);
-
-        //keyword
-        Route::resource('admin/keyword',App\Http\Controllers\Management\KeywordController::class);
-
-        //blog
-        Route::resource('admin/post',BlogController::class);
-
-        //Store
-        Route::resource('admin/store',StoreController::class);
-
-        //video
-        Route::resource('admin/videos',VideoshowController::class);
-
-        //slider
-        Route::resource('admin/slider',SliderController::class);
-
-        //testimonial
-        Route::resource('admin/testimonial',App\Http\Controllers\Management\TestimonialController::class);
-
-        //userinfo
-        Route::resource('admin/user-info',UserinfoController::class);
-
-        //pages
-        Route::resource('admin/pages',PageController::class);
-
-        Route::resource('admin/contacts',App\Http\Controllers\Management\ContactController::class);
-
-        Route::get('admin/subscriber',[App\Http\Controllers\Management\ContactController::class,'subscriber']);
-
-        //coupon
-        Route::resource('admin/coupon',CouponController::class);
-        Route::resource('admin/theme-setting', App\Http\Controllers\Management\ThemeSettingsController::class);
-        Route::post('admin/theme-setting-fields', [App\Http\Controllers\Management\ThemeSettingsController::class,'theme_setting_fields']);
-
-
-
-
-
+        Route::resource('restaurant/dashboard',App\Http\Controllers\Restaurant\HomeController::class);
+        Route::resource('restaurant/menu', \App\Http\Controllers\Restaurant\MenuController::class);
+        Route::get('restaurant/profile', [\App\Http\Controllers\Restaurant\HomeController::class,'ProfileSetting']);
+        Route::post('restaurant/update', [\App\Http\Controllers\Restaurant\HomeController::class,'ProfileSettingUpdate']);
     });
-
 
 
 Auth::routes();

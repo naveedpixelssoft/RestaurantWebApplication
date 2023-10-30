@@ -56,3 +56,20 @@ html::-webkit-scrollbar-thumb
 .table-responsive img{
     object-fit:contain !important;
 }
+.form-control {
+    border: 1px solid #ced4da !important;
+    padding: 6px 15px !important;
+    width: 100% !important;
+    border-radius: 5px !important;
+    max-width: 100% !important;
+    display: block !important;
+    -webkit-box-sizing: border-box !important;
+    height: 38px !important;
+
+}
+.form-control:disabled {
+    background: #e9ecef !important;
+}
+.card{
+    border-radius:0 !important;
+}
